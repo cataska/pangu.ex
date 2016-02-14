@@ -2,13 +2,13 @@
 
 Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).
 
-- `pangu.go <https://github.com/vinta/pangu>`_ (Go)
-- `pangu.java <https://github.com/vinta/pangu.java>`_ (Java)
-- `pangu.js <https://github.com/vinta/pangu.js>`_ (JavaScript, both Node.js and Browser)
-- `pangu.objective-c <https://github.com/Cee/pangu.objective-c>`_ (Objective-C)
-- `pangu.php <https://github.com/Kunr/pangu.php>`_ (PHP)
-- `pangu.py <https://github.com/vinta/pangu.py>`_ (Python)
-- `pangu.rb <https://github.com/dlackty/pangu.rb>`_ (Ruby)
+- [pangu.go](https://github.com/vinta/pangu) (Go)
+- [pangu.java](https://github.com/vinta/pangu.java) (Java)
+- [pangu.js](https://github.com/vinta/pangu.js) (JavaScript, both Node.js and Browser)
+- [pangu.objective-c](https://github.com/Cee/pangu.objective-c) (Objective-C)
+- [pangu.php](https://github.com/Kunr/pangu.php) (PHP)
+- [pangu.py](https://github.com/vinta/pangu.py) (Python)
+- [pangu.rb](https://github.com/dlackty/pangu.rb) (Ruby)
 
 ## Usage
 
