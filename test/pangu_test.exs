@@ -59,8 +59,86 @@ defmodule PanguTest do
     assert Pangu.spacing("abc ㈱ 123") == "abc ㈱ 123"
   end
 
+  test "CJK Unified Ideographs ExtensionA" do
+    assert Pangu.spacing("abc㐂123") == "abc 㐂 123"
+    assert Pangu.spacing("abc 㐂 123") == "abc 㐂 123"
+  end
+
+  test "CJK Unified Ideographs" do
+    assert Pangu.spacing("abc丁123") == "abc 丁 123"
+    assert Pangu.spacing("abc 丁 123") == "abc 丁 123"
+  end
+
+  test "CJK Compatibility Ideographs" do
+    assert Pangu.spacing("abc車123") == "abc 車 123"
+    assert Pangu.spacing("abc 車 123") == "abc 車 123"
+  end
+
+  test "Tilde" do
+    assert Pangu.spacing("前面~後面") == "前面~ 後面"
+    assert Pangu.spacing("前面 ~ 後面") == "前面 ~ 後面"
+    assert Pangu.spacing("前面~ 後面") == "前面~ 後面"
+  end
+
+  test "Backquote" do
+    assert Pangu.spacing("前面`後面") == "前面 ` 後面"
+    assert Pangu.spacing("前面 ` 後面") == "前面 ` 後面"
+    assert Pangu.spacing("前面` 後面") == "前面 ` 後面"
+  end
+
+  test "Exclamation Mark" do
+    assert Pangu.spacing("前面!後面") == "前面! 後面"
+    assert Pangu.spacing("前面 ! 後面") == "前面 ! 後面"
+    assert Pangu.spacing("前面! 後面") == "前面! 後面"
+  end
+
+  test "At" do
+    # https://twitter.com/vinta
+    assert Pangu.spacing("前面@vinta後面") == "前面 @vinta 後面"
+    assert Pangu.spacing("前面 @vinta 後面") == "前面 @vinta 後面"
+
+    # http://weibo.com/vintalines
+    assert Pangu.spacing("前面@陳上進 後面") == "前面 @陳上進 後面"
+    assert Pangu.spacing("前面 @陳上進 後面") == "前面 @陳上進 後面"
+    assert Pangu.spacing("前面 @陳上進tail") == "前面 @陳上進 tail"
+  end
+
+  test "Hash" do
+    assert Pangu.spacing("前面#H2G2後面") == "前面 #H2G2 後面"
+    assert Pangu.spacing("前面#銀河便車指南 後面") == "前面 #銀河便車指南 後面"
+    assert Pangu.spacing("前面#銀河便車指南tail") == "前面 #銀河便車指南 tail"
+    assert Pangu.spacing("前面#銀河公車指南 #銀河拖吊車指南 後面") == "前面 #銀河公車指南 #銀河拖吊車指南 後面"
+    assert Pangu.spacing("前面#H2G2#後面") == "前面 #H2G2# 後面"
+    assert Pangu.spacing("前面#銀河閃電霹靂車指南#後面") == "前面 #銀河閃電霹靂車指南# 後面"
+  end
+
+  test "Dollar" do
+    assert Pangu.spacing("前面$後面") == "前面 $ 後面"
+    assert Pangu.spacing("前面 $ 後面") == "前面 $ 後面"
+    assert Pangu.spacing("前面$100後面") == "前面 $100 後面"
+  end
+
+  test "Percent" do
+    assert Pangu.spacing("前面%後面") == "前面 % 後面"
+    assert Pangu.spacing("前面 % 後面") == "前面 % 後面"
+    assert Pangu.spacing("前面100%後面") == "前面 100% 後面"
+  end
+
+  test "Caret" do
+    assert Pangu.spacing("前面^後面") == "前面 ^ 後面"
+    assert Pangu.spacing("前面 ^ 後面") == "前面 ^ 後面"
+  end
+
+  test "Ampersand" do
+    assert Pangu.spacing("前面&後面") == "前面 & 後面"
+    assert Pangu.spacing("前面 & 後面") == "前面 & 後面"
+    assert Pangu.spacing("Vinta&Mollie") == "Vinta&Mollie"
+    assert Pangu.spacing("Vinta&陳上進") == "Vinta & 陳上進"
+    assert Pangu.spacing("陳上進&Vinta") == "陳上進 & Vinta"
+    assert Pangu.spacing("得到一個A&B的結果") == "得到一個 A&B 的結果"
+  end
+
   test "Quote" do
     assert Pangu.spacing("前面\"中文123漢字\"後面") == "前面 \"中文 123 漢字\" 後面"
   end
-
 end
