@@ -2,6 +2,7 @@
 
 Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).
 
+- [pangu.clj](https://github.com/coldnew/pangu.clj) (Clojure)
 - [pangu.go](https://github.com/vinta/pangu) (Go)
 - [pangu.java](https://github.com/vinta/pangu.java) (Java)
 - [pangu.js](https://github.com/vinta/pangu.js) (JavaScript, both Node.js and Browser)
