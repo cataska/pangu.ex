@@ -138,7 +138,171 @@ defmodule PanguTest do
     assert Pangu.spacing("得到一個A&B的結果") == "得到一個 A&B 的結果"
   end
 
+  test "Asterisk" do
+    assert Pangu.spacing("前面*後面") == "前面 * 後面"
+    assert Pangu.spacing("前面 * 後面") == "前面 * 後面"
+    assert Pangu.spacing("Vinta*Mollie") == "Vinta*Mollie"
+    assert Pangu.spacing("Vinta*陳上進") == "Vinta * 陳上進"
+    assert Pangu.spacing("陳上進*Vinta") == "陳上進 * Vinta"
+    assert Pangu.spacing("得到一個A*B的結果") == "得到一個 A*B 的結果"
+  end
+
+  test "Parentheses" do
+    assert Pangu.spacing("前面(中文123漢字)後面") == "前面 (中文 123 漢字) 後面"
+    assert Pangu.spacing("前面(中文123)後面") == "前面 (中文 123) 後面"
+    assert Pangu.spacing("前面(123漢字)後面") == "前面 (123 漢字) 後面"
+    assert Pangu.spacing("前面(中文123漢字) tail") == "前面 (中文 123 漢字) tail"
+    assert Pangu.spacing("head (中文123漢字)後面") == "head (中文 123 漢字) 後面"
+    assert Pangu.spacing("head (中文123漢字) tail") == "head (中文 123 漢字) tail"
+  end
+
+  test "Minus" do
+    assert Pangu.spacing("前面-後面") == "前面 - 後面"
+    assert Pangu.spacing("前面 - 後面") == "前面 - 後面"
+    assert Pangu.spacing("Vinta-Mollie") == "Vinta-Mollie"
+    assert Pangu.spacing("Vinta-陳上進") == "Vinta - 陳上進"
+    assert Pangu.spacing("陳上進-Vinta") == "陳上進 - Vinta"
+    assert Pangu.spacing("得到一個A-B的結果") == "得到一個 A-B 的結果"
+  end
+
+  test "Underscore" do
+    assert Pangu.spacing("前面_後面") == "前面_後面"
+    assert Pangu.spacing("前面 _ 後面") == "前面 _ 後面"
+  end
+
+  test "Plus" do
+    assert Pangu.spacing("前面+後面") == "前面 + 後面"
+    assert Pangu.spacing("前面 + 後面") == "前面 + 後面"
+    assert Pangu.spacing("Vinta+Mollie") == "Vinta+Mollie"
+    assert Pangu.spacing("Vinta+陳上進") == "Vinta + 陳上進"
+    assert Pangu.spacing("陳上進+Vinta") == "陳上進 + Vinta"
+    assert Pangu.spacing("得到一個A+B的結果") == "得到一個 A+B 的結果"
+    assert Pangu.spacing("得到一個C++的結果") == "得到一個 C++ 的結果"
+  end
+
+  test "Equal" do
+    assert Pangu.spacing("前面=後面") == "前面 = 後面"
+    assert Pangu.spacing("前面 = 後面") == "前面 = 後面"
+    assert Pangu.spacing("Vinta=Mollie") == "Vinta=Mollie"
+    assert Pangu.spacing("Vinta=陳上進") == "Vinta = 陳上進"
+    assert Pangu.spacing("陳上進=Vinta") == "陳上進 = Vinta"
+    assert Pangu.spacing("得到一個A=B的結果") == "得到一個 A=B 的結果"
+  end
+
+  test "Braces" do
+    assert Pangu.spacing("前面{中文123漢字}後面") == "前面 {中文 123 漢字} 後面"
+    assert Pangu.spacing("前面{中文123}後面") == "前面 {中文 123} 後面"
+    assert Pangu.spacing("前面{123漢字}後面") == "前面 {123 漢字} 後面"
+    assert Pangu.spacing("前面{中文123漢字} tail") == "前面 {中文 123 漢字} tail"
+    assert Pangu.spacing("head {中文123漢字}後面") == "head {中文 123 漢字} 後面"
+    assert Pangu.spacing("head {中文123漢字} tail") == "head {中文 123 漢字} tail"
+  end
+
+  test "Brackets" do
+    assert Pangu.spacing("前面[中文123漢字]後面") == "前面 [中文 123 漢字] 後面"
+    assert Pangu.spacing("前面[中文123]後面") == "前面 [中文 123] 後面"
+    assert Pangu.spacing("前面[123漢字]後面") == "前面 [123 漢字] 後面"
+    assert Pangu.spacing("前面[中文123漢字] tail") == "前面 [中文 123 漢字] tail"
+    assert Pangu.spacing("head [中文123漢字]後面") == "head [中文 123 漢字] 後面"
+    assert Pangu.spacing("head [中文123漢字] tail") == "head [中文 123 漢字] tail"
+  end
+
+  test "Pipe" do
+    assert Pangu.spacing("前面|後面") == "前面 | 後面"
+    assert Pangu.spacing("前面 | 後面") == "前面 | 後面"
+    assert Pangu.spacing("Vinta|Mollie") == "Vinta|Mollie"
+    assert Pangu.spacing("Vinta|陳上進") == "Vinta | 陳上進"
+    assert Pangu.spacing("陳上進|Vinta") == "陳上進 | Vinta"
+    assert Pangu.spacing("得到一個A|B的結果") == "得到一個 A|B 的結果"
+  end
+
+  test "Backslash" do
+    assert Pangu.spacing("前面\\後面") == "前面 \\ 後面"
+    assert Pangu.spacing("前面 \\ 後面") == "前面 \\ 後面"
+  end
+
+  test "Colon" do
+    assert Pangu.spacing("前面:後面") == "前面: 後面"
+    assert Pangu.spacing("前面 : 後面") == "前面 : 後面"
+    assert Pangu.spacing("前面: 後面") == "前面: 後面"
+  end
+
+  test "Semicolon" do
+    assert Pangu.spacing("前面;後面") == "前面; 後面"
+    assert Pangu.spacing("前面 ; 後面") == "前面 ; 後面"
+    assert Pangu.spacing("前面; 後面") == "前面; 後面"
+  end
+
   test "Quote" do
     assert Pangu.spacing("前面\"中文123漢字\"後面") == "前面 \"中文 123 漢字\" 後面"
+    assert Pangu.spacing("前面\"中文123\"後面") == "前面 \"中文 123\" 後面"
+    assert Pangu.spacing("前面\"123漢字\"後面") == "前面 \"123 漢字\" 後面"
+    assert Pangu.spacing("前面\"中文123漢字\" tail") == "前面 \"中文 123 漢字\" tail"
+    assert Pangu.spacing("head \"中文123漢字\"後面") == "head \"中文 123 漢字\" 後面"
+    assert Pangu.spacing("head \"中文123漢字\" tail") == "head \"中文 123 漢字\" tail"
+  end
+
+  test "Single Quote" do
+    assert Pangu.spacing("前面'中文123漢字'後面") == "前面 '中文 123 漢字' 後面"
+    assert Pangu.spacing("前面'中文123'後面") == "前面 '中文 123' 後面"
+    assert Pangu.spacing("前面'123漢字'後面") == "前面 '123 漢字' 後面"
+    assert Pangu.spacing("前面'中文123漢字' tail") == "前面 '中文 123 漢字' tail"
+    assert Pangu.spacing("head '中文123漢字'後面") == "head '中文 123 漢字' 後面"
+    assert Pangu.spacing("head '中文123漢字' tail") == "head '中文 123 漢字' tail"
+    assert Pangu.spacing("陳上進 likes 林依諾's status.") == "陳上進 likes 林依諾's status."
+  end
+
+  test "Less Than" do
+    assert Pangu.spacing("前面<後面") == "前面 < 後面"
+	  assert Pangu.spacing("前面 < 後面") == "前面 < 後面"
+	  assert Pangu.spacing("Vinta<Mollie") == "Vinta<Mollie"
+	  assert Pangu.spacing("Vinta<陳上進") == "Vinta < 陳上進"
+	  assert Pangu.spacing("陳上進<Vinta") == "陳上進 < Vinta"
+	  assert Pangu.spacing("得到一個A<B的結果") == "得到一個 A<B 的結果"
+	  assert Pangu.spacing("前面<中文123漢字>後面") == "前面 <中文 123 漢字> 後面"
+	  assert Pangu.spacing("前面<中文123>後面") == "前面 <中文 123> 後面"
+	  assert Pangu.spacing("前面<123漢字>後面") == "前面 <123 漢字> 後面"
+	  assert Pangu.spacing("前面<中文123漢字> tail") == "前面 <中文 123 漢字> tail"
+	  assert Pangu.spacing("head <中文123漢字>後面") == "head <中文 123 漢字> 後面"
+	  assert Pangu.spacing("head <中文123漢字> tail") == "head <中文 123 漢字> tail"
+  end
+
+  test "Comma" do
+    assert Pangu.spacing("前面,後面") == "前面, 後面"
+	  assert Pangu.spacing("前面 , 後面") == "前面 , 後面"
+	  assert Pangu.spacing("前面, 後面") == "前面, 後面"
+  end
+
+  test "Greater Than" do
+    assert Pangu.spacing("前面>後面") == "前面 > 後面"
+	  assert Pangu.spacing("前面 > 後面") == "前面 > 後面"
+	  assert Pangu.spacing("Vinta>Mollie") == "Vinta>Mollie"
+	  assert Pangu.spacing("Vinta>陳上進") == "Vinta > 陳上進"
+	  assert Pangu.spacing("陳上進>Vinta") == "陳上進 > Vinta"
+	  assert Pangu.spacing("得到一個A>B的結果") == "得到一個 A>B 的結果"
+  end
+
+  test "Period" do
+    assert Pangu.spacing("前面.後面") == "前面. 後面"
+	  assert Pangu.spacing("前面 . 後面") == "前面 . 後面"
+	  assert Pangu.spacing("前面. 後面") == "前面. 後面"
+	  # … is \u2026
+	  assert Pangu.spacing("前面…後面") == "前面… 後面"
+	  assert Pangu.spacing("前面……後面") == "前面…… 後面"
+  end
+
+  test "Question Mark" do
+    assert Pangu.spacing("前面?後面") == "前面? 後面"
+	  assert Pangu.spacing("前面 ? 後面") == "前面 ? 後面"
+	  assert Pangu.spacing("前面? 後面") == "前面? 後面"
+  end
+
+  test "Slash" do
+    assert Pangu.spacing("前面/後面") == "前面 / 後面"
+	  assert Pangu.spacing("前面 / 後面") == "前面 / 後面"
+	  assert Pangu.spacing("Vinta/Mollie") == "Vinta/Mollie"
+	  assert Pangu.spacing("Vinta/陳上進") == "Vinta / 陳上進"
+	  assert Pangu.spacing("陳上進/Vinta") == "陳上進 / Vinta"
+	  assert Pangu.spacing("得到一個A/B的結果") == "得到一個 A/B 的結果"
   end
 end
