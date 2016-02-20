@@ -3,8 +3,10 @@ defmodule Pangu.Mixfile do
 
   def project do
     [app: :pangu,
-     version: "0.0.1",
+     version: "0.1",
      elixir: "~> 1.1",
+     description: description,
+     package: package,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]
@@ -28,5 +30,19 @@ defmodule Pangu.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     []
+  end
+
+  defp description do
+    """
+    Paranoid text spacing in Elixir.
+    """
+  end
+
+  defp package do
+    [
+      maintainers: ["Wen-Chun Lin"],
+      licenses: ["MIT"],
+      links: %{"Github" => "https://github.com/cataska/pangu.ex"}
+    ]
   end
 end
