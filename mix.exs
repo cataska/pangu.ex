@@ -3,7 +3,7 @@ defmodule Pangu.Mixfile do
 
   def project do
     [app: :pangu,
-     version: "0.1",
+     version: "0.1.0",
      elixir: "~> 1.1",
      description: description,
      package: package,
