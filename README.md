@@ -1,5 +1,7 @@
 # pangu.ex
 
+[![hex.pm version](https://img.shields.io/hexpm/v/pangu.svg)](https://hex.pm/packages/pangu)
+
 Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).
 
 - [pangu.clj](https://github.com/coldnew/pangu.clj) (Clojure)
