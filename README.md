@@ -13,6 +13,18 @@ Paranoid text spacing for good readability, to automatically insert whitespace b
 - [pangu.py](https://github.com/vinta/pangu.py) (Python)
 - [pangu.rb](https://github.com/dlackty/pangu.rb) (Ruby)
 
+## Installation
+
+Add pangu to your `mix.exs` dependencies:
+
+```elixir
+def deps do
+  [{:pangu, "~> 0.1.0"}]
+end
+```
+
+and run `$ mix deps.get`.
+
 ## Usage
 
 ```elixir
